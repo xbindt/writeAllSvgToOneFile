@@ -49,7 +49,11 @@ const writeAllSvgToOneFile = (sourceFolder, destinationFile) => {
 try {
     if(fs.existsSync(destinationFile) && fs.readFileSync(destinationFile)) {
         console.warn('file exists -> empty file and add the svg data');
-        fs.truncate(destinationFile, 0, () => {writeAllSvgToOneFile(sourceFolder, destinationFile)});
+        fs.unlink(destinationFile, (err) => {
+            if (err) throw err;
+            console.log('successfully deleted /tmp/hello');
+            writeAllSvgToOneFile(sourceFolder, destinationFile);
+          });
     } else {
         writeAllSvgToOneFile(sourceFolder, destinationFile);
     }
