@@ -35,10 +35,10 @@ const writeAllSvgToOneFile = (sourceFolder, destinationFile) => {
         if (err) throw err;
         files.forEach(file => {
             try {
-                const readData = fs.readFileSync(sourceFolder+'/'+file, 'utf8');
-                if (readData) {
+                const readData = fs.readFile(sourceFolder+'/'+file, 'utf8', (err, readData) => {
+                    if (err) throw err;
                     copyDataToDestination(destinationFile, svgTemplate(file, optimizeSvg(readData)));
-                }
+                });
             } catch (error) {
                 console.log("something is wrong", error)
             }
