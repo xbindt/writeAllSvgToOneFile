@@ -1,0 +1,15 @@
+{
+  "name": "svgimporter",
+  "version": "1.0.0",
+  "description": "imports svg file transforms it to useable code for enexis project",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node script"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "svgo": "^2.8.0"
+  }
+}
