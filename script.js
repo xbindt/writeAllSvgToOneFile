@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { optimize } = require('svgo');
-const sourceFolder = './220117 Iconen Enexis';
+const sourceFolder = './sourceSvg';
 const destinationFile = './icon.exports.js';
 
 const cleanUpSvgData = data => (
