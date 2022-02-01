@@ -1,10 +1,11 @@
 const fs = require('fs');
+var path = require('path')
 const { optimize } = require('svgo');
 const sourceFolder = './sourceSvg';
 const destinationFile = './icon.exports.js';
 
 const cleanUpSvgData = data => (
-    data.replace('fill="#363636"','fill="currentColor"')
+    data.replace('fill="#363636"','fill="currentColor"').replace('fill="#156EC7"','fill="currentColor"')
 );
 
 const svgTemplate = (fileName, fileData) => (
@@ -35,10 +36,10 @@ const writeAllSvgToOneFile = (sourceFolder, destinationFile) => {
         if (err) throw err;
         files.forEach(file => {
             try {
-                const readData = fs.readFile(sourceFolder+'/'+file, 'utf8', (err, readData) => {
-                    if (err) throw err;
+                const readData = fs.readFileSync(sourceFolder+'/'+file, 'utf8');
+                if (readData && path.extname(file) === '.svg') {
                     copyDataToDestination(destinationFile, svgTemplate(file, optimizeSvg(readData)));
-                });
+                }
             } catch (error) {
                 console.log("something is wrong", error)
             }
