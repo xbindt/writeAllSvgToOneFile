@@ -4,13 +4,16 @@ const { optimize } = require('svgo');
 const sourceFolder = './sourceSvg';
 const destinationFile = './icon.exports.js';
 
-const cleanUpSvgData = data => (
-    data.replace('fill="#363636"','fill="currentColor"').replace('fill="#156EC7"','fill="currentColor"')
+const cleanUpSvgData = (data, name) => (
+     data.replace('svg', 'svg data-test="icon-'+name+'"').replace('fill="#363636"','fill="currentColor"').replace('fill="#156EC7"','fill="currentColor"')
 );
 
-const svgTemplate = (fileName, fileData) => (
-    `export const ${fileName.split('.').slice(0, -1).join('.')} = (${cleanUpSvgData(fileData)});\n`
-);
+const generateName = (fileName) => (fileName.split('.').slice(0, -1).join('.'))
+
+const svgTemplate = (fileName, fileData) => {
+    const name = generateName(fileName);
+    return(`export const ${name} = (${cleanUpSvgData(fileData, name)});\n`);
+};
 
 function copyDataToDestination(destination, data) {
   fs.appendFile(destination, data, (err) => {
