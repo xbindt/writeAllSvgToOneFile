@@ -1,8 +1,15 @@
 const fs = require('fs');
+const fsPromises = fs.promises;
 var path = require('path')
 const { optimize } = require('svgo');
 const sourceFolder = './sourceSvg';
 const destinationFile = './icon.exports.js';
+
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+}
 
 const cleanUpSvgData = (data, name) => (
      data.replace('svg', 'svg data-test="icon-'+name+'"').replace('fill="#363636"','fill="currentColor"').replace('fill="#156EC7"','fill="currentColor"')
@@ -15,12 +22,30 @@ const svgTemplate = (fileName, fileData) => {
     return(`export const ${name} = (${cleanUpSvgData(fileData, name)});\n`);
 };
 
-function copyDataToDestination(destination, data) {
-  fs.appendFile(destination, data, (err) => {
-    if (err) throw err;
-    console.log('The "data to append" was appended to file!');
-  });
-}
+const copyDataToDestination = (destination, data) => new Promise ((resolve) => {
+        fs.appendFile(destination, data, (err) => {
+            if (err) throw err;
+            resolve();
+            console.log('The "data to append" was appended to file!');
+        })
+    }
+);
+
+const readFile = (file) => new Promise ((resolve) => {
+        const data = fs.readFileSync(file, 'utf8', (err) => {
+            if (err) throw err;
+        });
+        resolve(data)
+    }
+);
+
+
+// const copyDataToDestination = (destination, data) => new Promise({
+//     fsPromises.appendFile(destination, data, (err) => {
+//         if (err) throw err;
+//         console.log('The "data to append" was appended to file!');
+//     });
+// }
 
 const optimizeSvg = svg => {
     const { data } = optimize(svg, {
@@ -30,23 +55,27 @@ const optimizeSvg = svg => {
             {name: 'removeXMLNS', active: true},
         ],
         js2svg: { pretty: true, indent: 2 },
-      });
-     return data;
+    });
+    return data;
 };
 
+
+
+const processFiles = async (files) => {
+    await asyncForEach(files, async (file) => {
+    if(path.extname(sourceFolder+'/'+file) === '.svg'){
+        const readData = await readFile(sourceFolder+'/'+file);
+        await copyDataToDestination(destinationFile, svgTemplate(file, optimizeSvg(readData)));
+
+       }
+    });
+    console.log('Done');
+}
+
 const writeAllSvgToOneFile = (sourceFolder, destinationFile) => {
-    fs.readdir(sourceFolder, (err, files) => {
+    const files = fs.readdir(sourceFolder, (err, files) => {
         if (err) throw err;
-        files.forEach(file => {
-            try {
-                const readData = fs.readFileSync(sourceFolder+'/'+file, 'utf8');
-                if (readData && path.extname(file) === '.svg') {
-                    copyDataToDestination(destinationFile, svgTemplate(file, optimizeSvg(readData)));
-                }
-            } catch (error) {
-                console.log("something is wrong", error)
-            }
-        });
+        processFiles(files);
     });
 }
 
