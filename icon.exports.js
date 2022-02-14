@@ -1127,12 +1127,21 @@ export const shapeLinesDoubleCircle = (<svg data-test="icon-shapeLinesDoubleCirc
 </svg>
 );
 export const shapeLinesRaster = (<svg data-test="icon-shapeLinesRaster" fill="none" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 14v2h2L16 2V0h-2L0 14ZM10 0 0 10V6l6-6h4ZM2 0H0v2l2-2Zm14 6L6 16h4l6-6V6Zm0 8-2 2h2v-2Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 9v2L11 0H9L0 9Zm7-9H5L0 5v2l7-7ZM0 3l3-3H1L0 1v2Zm13-3L0 13v2L15 0h-2Zm3 1L1 16h2L16 3V1Zm0 4L5 16h2l9-9V5Zm0 4-7 7h2l5-5V9Zm0 4-3 3h2l1-1v-2Z" fill="currentColor"/>
 </svg>
 );
 export const shapeLinesRasterCircle = (<svg data-test="icon-shapeLinesRasterCircle" fill="none" viewBox="0 0 16 16">
   <path d="M0 8a8 8 0 1 1 16 0A8 8 0 1 1 0 8Z" fill="currentColor"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M4 11v1h1l7-7V4h-1l-7 7Zm5-7L4 9V7l3-3h2ZM5 4H4v1l1-1Zm7 3-5 5h2l3-3V7Zm0 4-1 1h1v-1Z" fill="#fff"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="m12 5-7 7h2l5-5V5Zm-1-1H9L4 9v2l7-7ZM4 7l3-3H5L4 5v2Zm8 2-3 3h2l1-1V9Z" fill="#fff"/>
+</svg>
+);
+export const shapeLinesRasterHalf = (<svg data-test="icon-shapeLinesRasterHalf" fill="none" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 9v2L11 0H9L0 9Zm7-9H5L0 5v2l7-7ZM0 3l3-3H1L0 1v2Zm13-3L0 13v2L15 0h-2Zm3 1L1 16h15V1Z" fill="currentColor"/>
+</svg>
+);
+export const shapeLinesRasterHalfCircle = (<svg data-test="icon-shapeLinesRasterHalfCircle" fill="none" viewBox="0 0 16 16">
+  <path d="M0 8a8 8 0 1 1 16 0A8 8 0 1 1 0 8Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4h2L4 7V5l1-1ZM4 9l5-5h2l-7 7V9Zm1 3 7-7v7H5Z" fill="#fff"/>
 </svg>
 );
 export const shapeLinesTriple = (<svg data-test="icon-shapeLinesTriple" fill="none" viewBox="0 0 16 16">
@@ -1221,6 +1230,15 @@ export const shapeSquareCircle = (<svg data-test="icon-shapeSquareCircle" fill="
   <path fill="#fff" d="M4 4h8v8H4z"/>
 </svg>
 );
+export const shapeSquareOutline = (<svg data-test="icon-shapeSquareOutline" fill="none" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M15 1H1v14h14V1ZM0 0v16h16V0H0Z" fill="currentColor"/>
+</svg>
+);
+export const shapeSquareOutlineCircle = (<svg data-test="icon-shapeSquareOutlineCircle" fill="none" viewBox="0 0 16 16">
+  <path d="M0 8a8 8 0 1 1 16 0A8 8 0 1 1 0 8Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M11 5H5v6h6V5ZM4 4h8v8H4V4Z" fill="#fff"/>
+</svg>
+);
 export const shapeTriangleDown = (<svg data-test="icon-shapeTriangleDown" fill="none" viewBox="0 0 16 16">
   <path d="M16 0 8 14 0 0h16Z" fill="currentColor"/>
 </svg>
@@ -1257,11 +1275,11 @@ export const shapeTriangleUpCircle = (<svg data-test="icon-shapeTriangleUpCircle
   <path d="m4 11 4-7 4 7H4Z" fill="#fff"/>
 </svg>
 );
-export const slidersTripple = (<svg data-test="icon-slidersTripple" fill="none" viewBox="0 0 16 16">
+export const slidersTriple = (<svg data-test="icon-slidersTriple" fill="none" viewBox="0 0 16 16">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0h2v1.667h4v2h-4v1.666h-2V0ZM8 1.667H0v2h8v-2ZM5 5.333H3V7H0v2h3v1.667h2V5.333ZM7 7v2h9V7H7Zm0 3.667V16h2v-1.667h7v-2H9v-1.666H7Zm-2 3.666v-2H0v2h5Z" fill="currentColor"/>
 </svg>
 );
-export const slidersTrippleCircle = (<svg data-test="icon-slidersTrippleCircle" fill="none" viewBox="0 0 16 16">
+export const slidersTripleCircle = (<svg data-test="icon-slidersTripleCircle" fill="none" viewBox="0 0 16 16">
   <path d="M0 8a8 8 0 1 1 16 0A8 8 0 1 1 0 8Z" fill="currentColor"/>
   <path fill-rule="evenodd" clip-rule="evenodd" d="M9 4h1v.833h2v1h-2v.834H9V4Zm-1 .833H4v1h4v-1ZM6.5 6.667h-1V7.5H4v1h1.5v.833h1V6.667Zm1 .833v1H12v-1H7.5Zm0 1.833V12h1v-.833H12v-1H8.5v-.834h-1Zm-1 1.834v-1H4v1h2.5Z" fill="#fff"/>
 </svg>
